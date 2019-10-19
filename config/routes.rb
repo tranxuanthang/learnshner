@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :tests, only: %i(index)
   end
 
-  resources :tests
+  resources :tests, except: %i(new edit)
   resources :test_records
 
 end
