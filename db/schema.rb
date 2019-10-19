@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_234009) do
+ActiveRecord::Schema.define(version: 2019_10_18_234010) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_234009) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "auth_token"
+    t.string "role", default: "member"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end

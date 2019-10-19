@@ -1,7 +1,15 @@
 class ApplicationController < ActionController::API
+  include Pundit
   before_action :login_with_auth_token
 
+  rescue_from Pundit::NotAuthorizedError, with: :unauthorized_user
+
   private
+  def unauthorized_user
+    @errors = "You aren't authorized!"
+    render :error, status: :unauthorized
+  end
+
   def login_with_auth_token
     user_id = request.headers["user-id"]
     auth_token = request.headers["auth-token"]

@@ -3,4 +3,14 @@ Rails.application.routes.draw do
   resources :users, only: :create
   resources :user_sessions, only: [:create, :destroy]
   resources :user, only: :index
+  resources :users do
+    resources :test_records, only: %i(index)
+  end
+  resources :users do
+    resources :tests, only: %i(index)
+  end
+
+  resources :tests
+  resources :test_records
+
 end
