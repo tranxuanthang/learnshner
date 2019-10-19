@@ -3,6 +3,8 @@ class Test < ApplicationRecord
   belongs_to :user
   belongs_to :language
   belongs_to :category
+  has_many :bookmarks
+  has_many :bookmarkeduser, through: :bookmarks, source: :user
 
   accepts_nested_attributes_for :questions, allow_destroy: true, reject_if:  :reject_question
 

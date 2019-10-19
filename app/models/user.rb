@@ -12,4 +12,6 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :tests
+  has_many :bookmarks
+  has_many :bookmarkedtests, through: :bookmarks, source: :test
 end
