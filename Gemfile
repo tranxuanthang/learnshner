@@ -26,8 +26,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # gem 'rack-cors'
 gem 'sorcery'
 gem 'pry'
-gem "pundit"
+gem 'pundit'
 gem 'rack-cors'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

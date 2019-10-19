@@ -5,7 +5,7 @@ class TestsController < ApplicationController
 
   def index
     if @user
-      @tests = @user.tests
+      @tests = @user.tests.order(created_at: :desc).page(params[:page]).per(10)
       authorize @tests
     else
       render :error, status: :unprocessable_entity

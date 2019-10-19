@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_10_19_090318) do
   end
 
   create_table "test_record_questions", force: :cascade do |t|
-    t.integer "record_id", null: false
+    t.integer "test_record_id", null: false
     t.integer "question_id", null: false
     t.integer "number_passed"
     t.integer "number_failed"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_10_19_090318) do
 
   add_foreign_key "questions", "tests"
   add_foreign_key "test_record_questions", "questions"
-  add_foreign_key "test_record_questions", "records"
+  add_foreign_key "test_record_questions", "test_records"
   add_foreign_key "test_records", "tests"
   add_foreign_key "test_records", "users"
   add_foreign_key "tests", "categories"
