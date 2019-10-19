@@ -15,6 +15,7 @@ class TestRecordsController < ApplicationController
   end
 
   def show
+    @test_record = TestRecord.find_by(id: params[:id])
   end
 
   def update

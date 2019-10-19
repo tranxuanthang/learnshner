@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
   include Pundit
   before_action :login_with_auth_token
 
@@ -11,10 +13,12 @@ class ApplicationController < ActionController::API
   end
 
   def login_with_auth_token
-    user_id = request.headers["user-id"]
-    auth_token = request.headers["auth-token"]
-    if user_id && auth_token
-      user = User.find_by id: user_id, auth_token: auth_token
+    auth_token = nil
+    authenticate_with_http_token do |token, options|
+      auth_token = token
+    end
+    if auth_token
+      user = User.find_by auth_token: auth_token
       auto_login user if user
     end
   end
