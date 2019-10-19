@@ -1,3 +1,3 @@
 json.tests do
-  json.array! @tests
+  json.array! @tests, partial: "tests/test", as: :test
 end

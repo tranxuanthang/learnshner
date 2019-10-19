@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
 
   private
   def unauthorized_user
-    @errors = "You aren't authorized!"
+    @errors = "You don't have permission!"
     render :error, status: :unauthorized
   end
 
