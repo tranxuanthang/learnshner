@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :test_records, format: :json
   resources :categories, except: %i(new edit), format: :json
   resources :languages, except: %i(new edit), format: :json
+  resources :bookmarks, only: %i(index create destroy), format: :json
 end

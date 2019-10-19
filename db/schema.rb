@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_090318) do
+ActiveRecord::Schema.define(version: 2019_10_19_114857) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "test_id"
+    t.index ["test_id", "user_id"], name: "index_bookmarks_on_test_id_and_user_id"
+    t.index ["user_id", "test_id"], name: "index_bookmarks_on_user_id_and_test_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -35,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_10_19_090318) do
   end
 
   create_table "test_record_questions", force: :cascade do |t|
-    t.integer "test_record_id", null: false
+    t.integer "record_id", null: false
     t.integer "question_id", null: false
     t.integer "number_passed"
     t.integer "number_failed"
@@ -67,11 +74,6 @@ ActiveRecord::Schema.define(version: 2019_10_19_090318) do
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
-  create_table "tests_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "test_id", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -87,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_10_19_090318) do
 
   add_foreign_key "questions", "tests"
   add_foreign_key "test_record_questions", "questions"
-  add_foreign_key "test_record_questions", "test_records"
+  add_foreign_key "test_record_questions", "records"
   add_foreign_key "test_records", "tests"
   add_foreign_key "test_records", "users"
   add_foreign_key "tests", "categories"
