@@ -4,6 +4,7 @@ class UserSessionsController < ApplicationController
     if @user.valid_password?(params[:password])
       render :create, status: :created
     else
+      @errors = "Invalid login info"
       render :error, status: :unauthorized
     end
   end
