@@ -3,7 +3,7 @@
   json.created_at test.created_at
   json.user do
     json.id test.user_id
-    # json.name test.user_name
+    json.name test.user_name
     json.email test.user_email
   end
   json.category do

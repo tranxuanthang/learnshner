@@ -3,48 +3,50 @@ class ApplicationPolicy
 
   def initialize(user, record)
     raise Pundit::NotAuthorizedError, "must be logged in" unless user
-    @user = user
-    @record = record
-  end
+    raise Pundit::NotDefinedError, "unable to find policy NilClassPolicy for nil", unless record
+                                                                                     @user = user
+                                                                                     @record = record
+                                                                                   end
 
-  def index?
-    false
-  end
-
-  def show?
-    false
-  end
-
-  def create?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    false
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    false
-  end
-
-  class Scope
-    attr_reader :user, :scope
-
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
+    def index?
+      false
     end
 
-    def resolve
-      scope.all
+    def show?
+      false
+    end
+
+    def create?
+      false
+    end
+
+    def new?
+      create?
+    end
+
+    def update?
+      false
+    end
+
+    def edit?
+      update?
+    end
+
+    def destroy?
+      false
+    end
+
+    class Scope
+      attr_reader :user, :scope
+
+      def initialize(user, scope)
+        @user = user
+        @scope = scope
+      end
+
+      def resolve
+        scope.all
+      end
     end
   end
 end

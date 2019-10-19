@@ -13,4 +13,6 @@ Rails.application.routes.draw do
 
   resources :tests, except: %i(new edit), format: :json
   resources :test_records, format: :json
+  resources :categories, except: %i(new edit), format: :json
+  resources :languages, except: %i(new edit), format: :json
 end
