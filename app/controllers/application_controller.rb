@@ -4,11 +4,11 @@ class ApplicationController < ActionController::API
   include Pundit
   before_action :login_with_auth_token
 
-  rescue_from Pundit::NotAuthorizedError, with: :unauthorized_user
+  rescue_from Pundit::NotAuthorizedError, Pundit::NotDefinedError, with: :unauthorized_user
 
   private
   def unauthorized_user
-    @errors = "You don't have permission!"
+    @errors = "You don't have permission or something wrong! Please try again!"
     render :error, status: :unauthorized
   end
 

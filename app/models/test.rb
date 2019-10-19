@@ -6,7 +6,7 @@ class Test < ApplicationRecord
 
   accepts_nested_attributes_for :questions, allow_destroy: true, reject_if:  :reject_question
 
-  delegate :id, :email, to: :user, prefix: true, allow_nil: true
+  delegate :id, :email, :name, to: :user, prefix: true, allow_nil: true
   delegate :id, :name, to: :category, prefix: true, allow_nil: true
   delegate :id, :language_code, to: :language, prefix: true, allow_nil: true
 
